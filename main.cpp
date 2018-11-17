@@ -11,14 +11,13 @@ using namespace std;
 const int ERROR_NOT_ENOUGH_ARGS = -1;
 const int ERROR_FILE_NOT_FOUND = -2;
 
-
 int main(int argc, char **argv) {
-    if (!argc) {
+    if (argc <= 1) {
         printf("filepath as argument expected");
         return ERROR_NOT_ENOUGH_ARGS;
     }
 
-    char **content = readFile(argv[0]);
+    char **content = readFile(argv[1]);
 
     if (content == nullptr) {
         return ERROR_FILE_NOT_FOUND;
