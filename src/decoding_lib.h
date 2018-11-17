@@ -27,12 +27,12 @@ void decodeStep4(char **content);
 void decodeStep5(char **content);
 
 /*
- * Инвертирует порядок чётных строк
+ * Инвертирует порядок символов в чётных строках
  */
 void decodeStep6(char **content);
 
 /*
- * Инвертирует порядок нечётных столбцов
+ * Инвертирует порядок символов нечётных столбцов
  */
 void decodeStep7(char **content);
 
