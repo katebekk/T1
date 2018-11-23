@@ -1,13 +1,14 @@
 #include <fstream>
 #include <iostream>
 using namespace std;
+int w, l;//кол-во столбцов,кол-во строк
 char **readFile(const char *filepath) {
-  int w, l;
-  w = 0;
-  l = w;
+
   ifstream MyFile;
   MyFile.open(filepath, ios_base::in);
   if (MyFile.is_open()) {
+    w = 0;
+    l = w;
     cout << "File open successful" << endl;
     MyFile >> w;
     MyFile >> l;
