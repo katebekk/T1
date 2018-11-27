@@ -31,12 +31,32 @@ void decodeStep2(char **content){
  */
 void decodeStep3(char **content){
 
+    int len = ((int*)content)[0], count = ((int*)content)[1];
+    for (int i = 1; i <=count ; i++){
+        int j = 2, k = len - 7;
+        while ((j < len) and (k >= 0)){
+            std:: swap(content[i][j], content[i][k]);
+            j += 3;
+            k -= 7;
+        }
+    }
 }
 
 /*
  * Заменяет каждый 2ий символ в каждом столбце на каждый 11ой с конца
  */
-void decodeStep4(char **content);
+void decodeStep4(char **content){
+
+    int len = ((int*)content)[0], count = ((int*)content)[1];
+    for (int i = 0; i < len; i++){
+        int j = 2, k = count - 11;
+        while ((j <= count) and (k > 0)){
+            std:: swap(content[j][i], content[k][i]);
+            j += 2;
+            k -= 11;
+        }
+    }
+}
 
 /*
  * Транспонирует массив строк(меняет строки и столбцы местами)
