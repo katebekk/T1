@@ -28,8 +28,8 @@ int main(int argc, char **argv) {
     decodeStep3(content);
     decodeStep4(content);
     //decodeStep5(content);
-    //decodeStep6(content);
-    //decodeStep7(content);
+    decodeStep6(content);
+    decodeStep7(content);
     //decodeStep8(content);
     //decodeStep9(content);
     printContent((const char **) content);

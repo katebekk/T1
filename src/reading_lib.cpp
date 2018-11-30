@@ -14,8 +14,8 @@ char **readFile(const char *filepath) {
     char **str = new char* [count + 1];
     int n = sizeof(int)*2;
     str[0] = new char[n];
-    ((int*) str)[0] = len;
-    ((int*) str)[1] = count;
+    ((int*) (*str))[0] = len;
+    ((int*) (*str))[1] = count;
     for (int i = 1; i <= count; i++){
         str[i] = new char [len];
         fscanf(f, "%s", str[i]);

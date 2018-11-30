@@ -7,7 +7,7 @@
  */
 void decodeStep1(char **content){
 
-    int count = ((int*)content)[1];
+    int count = ((int*)(*content))[1];
     for (int i = 2; i<=count; i+=2){
         std :: swap(content[i], content[i-1]);
     }
@@ -18,7 +18,7 @@ void decodeStep1(char **content){
  */
 void decodeStep2(char **content){
 
-    int len = ((int*)content)[0], count = ((int*)content)[1];
+    int len = ((int*)(*content))[0], count = ((int*)(*content))[1];
     for (int i = 1; i < len; i+=2){
         for (int j = 1; j <= count; j++){
             std:: swap(content[j][i-1], content[j][i]);
@@ -31,10 +31,10 @@ void decodeStep2(char **content){
  */
 void decodeStep3(char **content){
 
-    int len = ((int*)content)[0], count = ((int*)content)[1];
+    int len = ((int*)(*content))[0], count = ((int*)(*content))[1];
     for (int i = 1; i <=count ; i++){
         int j = 2, k = len - 7;
-        while ((j < len) and (k >= 0)){
+        while ((j < len) && (k >= 0)){
             std:: swap(content[i][j], content[i][k]);
             j += 3;
             k -= 7;
@@ -47,10 +47,10 @@ void decodeStep3(char **content){
  */
 void decodeStep4(char **content){
 
-    int len = ((int*)content)[0], count = ((int*)content)[1];
+    int len = ((int*)(*content))[0], count = ((int*)(*content))[1];
     for (int i = 0; i < len; i++){
         int j = 2, k = count - 11;
-        while ((j <= count) and (k > 0)){
+        while ((j <= count) && (k > 0)){
             std:: swap(content[j][i], content[k][i]);
             j += 2;
             k -= 11;
@@ -71,17 +71,32 @@ void decodeStep4(char **content){
     ((int *) str)[0] = newlen;
     ((int *) str)[1] = newcount;
 
-    for (int i = 1; i <= newcount; i++) {
-        str[i] = new char[newlen];
+    for (int i = 1; i <= newcount; i++){
+        str[i] = new char [newlen];
+    }
 
-        for (int j = 0; j < newlen; j++) {
-            str[i][j] = content[j][i]; //падает на первой итерации
+    for (int i = 1; i <= newcount; i++){
+        for (int j = 0; j < newlen; j++){
+            str[i][j] = content[j+1][i-1];
         }
     }
 
-    content = str;
+    for (int i = 0; i <= count; i++){
+        delete [] content[i];
+    }
+    delete[] content;
+
+    content = new char* [newcount+1];
+    content[0] = new char[n];
+    ((int*)content)[0] = newlen;
+    ((int*)content)[0] = newcount;
+    for (int i = 1; i <= newcount; i++){
+        content[i] = new char [newlen];
+        content[i] = str[i];
+    }
+
     for (int i = 0; i <= newcount; i++){
-        delete str[i];
+        delete [] str[i];
     }
     delete[] str;
 }*/
@@ -89,12 +104,28 @@ void decodeStep4(char **content){
 /*
  * Инвертирует порядок символов в чётных строках
  */
-void decodeStep6(char **content);
+void decodeStep6(char **content){
+
+    int len = ((int*)(*content))[0], count = ((int*)(*content))[1];
+    for (int i = 2; i <= count; i += 2){
+        for (int j = 0, k = len - 1; j <= k; j++, k--){
+            std:: swap(content[i][j], content[i][k]);
+        }
+    }
+}
 
 /*
  * Инвертирует порядок символов нечётных столбцов
  */
-void decodeStep7(char **content);
+void decodeStep7(char **content){
+    int len = ((int*)(*content))[0], count = ((int*)(*content))[1];
+    for (int i = 0; i < len; i += 2){
+        for (int j = 1, k = count; j <= k; j++, k--){
+            std:: swap(content[j][i], content[k][i]);
+        }
+    }
+
+}
 
 /*
  * Смещает символы стоящие на чётных (i+j) вправо на 13 символов в таблице ASCII
