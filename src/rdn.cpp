@@ -1,7 +1,7 @@
 #include <fstream>
 #include <iostream>
 using namespace std;
-int w, l;//кол-во столбцов,кол-во строк
+int w, l; //кол-во столбцов,кол-во строк
 char **readFile(const char *filepath) {
 
   ifstream MyFile;
