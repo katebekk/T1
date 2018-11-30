@@ -118,6 +118,7 @@ void decodeStep6(char **content){
  * Инвертирует порядок символов нечётных столбцов
  */
 void decodeStep7(char **content){
+
     int len = ((int*)(*content))[0], count = ((int*)(*content))[1];
     for (int i = 0; i < len; i += 2){
         for (int j = 1, k = count; j <= k; j++, k--){
@@ -130,9 +131,29 @@ void decodeStep7(char **content){
 /*
  * Смещает символы стоящие на чётных (i+j) вправо на 13 символов в таблице ASCII
  */
-void decodeStep8(char **content);
+void decodeStep8(char **content){
+
+    int len = ((int*)(*content))[0], count = ((int*)(*content))[1];
+    for (int i = 1; i <= count; i++){
+        for (int j = 0; j < len; j++){
+            if ((i+j) % 2 == 0){
+                content[i][j] = (char)((int) content[i][j] + 13);
+            }
+        }
+    }
+}
 
 /*
  * Смещает символы стоящие на нечётных (i+j) влево на 5 символов в таблице ASCII
  */
-void decodeStep9(char **content);
+void decodeStep9(char **content){
+
+    int len = ((int*)(*content))[0], count = ((int*)(*content))[1];
+    for (int i = 1; i <= count; i++){
+        for (int j = 0; j < len; j++){
+            if ((i+j) % 2 == 1){
+                content[i][j] = (char)((int) content[i][j] - 5);
+            }
+        }
+    }
+}
