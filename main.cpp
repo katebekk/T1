@@ -23,6 +23,7 @@ int main(int argc, char **argv) {
         return ERROR_FILE_NOT_FOUND;
     }
 
+    
     decodeStep1(content);
     decodeStep2(content);
     decodeStep3(content);
