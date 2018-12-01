@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
     decodeStep2(content);
     decodeStep3(content);
     decodeStep4(content);
-    //decodeStep5(content);
+    decodeStep5(content);
     decodeStep6(content);
     decodeStep7(content);
     decodeStep8(content);
