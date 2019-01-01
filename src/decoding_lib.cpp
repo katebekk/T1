@@ -79,7 +79,7 @@ void decodeStep4(char **&content){
 void decodeStep5(char **&content){
     int column = ((int*)(*content))[0];
     int row = ((int*)(*content))[1];
-    char transp[column][row];// new char* [column + 1];
+    char transp[column][row];
     for (int i = 0; i <= column; i++){
         for (int j = 1; j <= row; j++){
             transp[i][j-1] = content[j][i];
